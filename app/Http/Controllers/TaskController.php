@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Task;
 
 use Illuminate\Http\Request;
 
@@ -14,6 +15,8 @@ class TaskController extends Controller
     public function index()
     {
         //
+        $tasks = Task::get();
+        return $tasks;
     }
 
     /**
@@ -56,7 +59,9 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        //
+        //formulario
+        $tasks=Task::findOrFail($id);
+        return $tasks;
     }
 
     /**
@@ -80,5 +85,8 @@ class TaskController extends Controller
     public function destroy($id)
     {
         //
+
+        $tasks=Task::findOrFail($id);
+        $tasks->delete();
     }
 }
